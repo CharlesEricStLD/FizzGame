@@ -1,3 +1,5 @@
+import {AddNodeToDOM,styleNode} from "./specialisedFunction"
+
 //New updated version of Fizz game///
 
 //Pseudo-code//
@@ -19,6 +21,18 @@
 
 //------------------------FUNCTION DEFINITION----------------------/////
 
-//Event listener for the Start button//
+const launchGame = () => {
+    
+}
 
+showInputWindow = {
+
+}
+
+
+
+
+//------------------------END OF FUNCTION DEFINITION----------------/////
+//Event listener for the Start button//
+startButton.AddEventListener("click",(launchGame))
     

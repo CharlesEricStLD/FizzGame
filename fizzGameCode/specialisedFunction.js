@@ -1,7 +1,7 @@
 //JS script i wich I stored my personalised function//
 
 //Function to Add node to the DOM//
-const AddNodeToDOM = (nodeToCreate, nodeToAppendTo, index) => {
+export const AddNodeToDOM = (nodeToCreate, nodeToAppendTo, index) => {
     let nodeCreated = document.createElement(nodeToCreate);
     
 //Check if the element created is not unique//
@@ -21,7 +21,7 @@ return nodeCreated;
 }
 
  //Function to style node element on the page with JS accepting an object of style//
-const styleNode = (nodeToStyle,properties) => {
+export const styleNode = (nodeToStyle,properties) => {
     const listOfStyles = Object.entries(properties);    
     listOfStyles.forEach(property => {
                 let styleProperty =  property[0];
