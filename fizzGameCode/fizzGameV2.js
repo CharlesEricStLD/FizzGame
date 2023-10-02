@@ -28,7 +28,7 @@ import {AddNodeToDOM,styleNode} from "./specialisedFunction.js"
 const launchGame = () => {
 
     //Get the number of turn indicated by the user in the input//
-    let numberOfTurnToPlay = parseInt(numberOfTurn.value); 
+    let numberOfTurnToPlay = parseInt(numberOfTurn.value)+1; 
     
         //Prompt user to enter a number//
         showInputMessage(firstInputMessage);
@@ -37,7 +37,7 @@ const launchGame = () => {
         //listen to the number enter by the player//
         nextButton.addEventListener("click",() => {
                 //loop for each turn of the game//
-            for (let index = 0; index < numberOfTurnToPlay; index++) {
+            for (let index = 1; index < numberOfTurnToPlay+1; index++) {
                 
                 //Condition to send the next message//
                 if (index > 1) {
@@ -68,7 +68,7 @@ const launchGame = () => {
 function inputVerification(input,index) {
     //Check if the player write a valid input (Fizz, Buzz, the following number)
     let error = 0;
-    let nextNumber = 0;
+    let nextNumber = 1;
     nextNumber = index + 1;
     // let beforeNumber = startingNumber + index; 
     if (nextNumber % 3 === 0 && nextNumber % 5 === 0) {
@@ -134,9 +134,6 @@ const gameOverTitleStyle = {
 
 
 //Event listener for the Start button//
-
-
-
 
 startButton.addEventListener("click",(launchGame));
     
