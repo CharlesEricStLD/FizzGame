@@ -33,7 +33,8 @@ const launchGame = () => {
     //loop for each turn of the game//
     for (let index = 0; index < numberOfTurnToPlay; index++) {
         //Prompt user to enter a number//
-        showInputMessage();
+        let inputEnter = showInputMessage();
+        let input = inputEnter.value;
         inputVerification(input);
     }
 }
