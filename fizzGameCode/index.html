@@ -8,16 +8,22 @@
     <script type="module" src="fizzGameV2.js">  </script>
 </head>
 <body>
+    
     <h1 id="gameOverTitle"></h1>
     <h1>Welcome to the fizz game</h1> 
     <p>Here's the rule : </p>
-    <div class="gameOver">
+    <div class="gameOver"></div>
     <p>In this game the computer will ask you for a number to start with and the number of turn you want to do. After that entry, each player will have to enter the next number (if you enter 1, the next one is 2, and if you enter 17 the next one is 18  etc.), BUT, there is some special rules ! </p>
     <ol>
         <li>If the number you enter is divisible by 3 should be replace by Fizz (so you write Fizz and not 3 at the prompt)</li>
         <li>If the number you enter is divisible by 5 should be replace by Buzz (so you write Buzz and not 3 at the prompt)</li>
         <li>The game will end after the number of turn you choose at the beguining of the game</li>
     </ol>
+    <div id="userInput">
+    <form >
+        <label for="numberOfTurn">How many turns do you want to play ?</label>
+        <input  id="numberOfTurn" type="number" min="5" max="20">
+    </form>
     </div>
 
     <h2>Just push the start button down here to start the game!</h2>
