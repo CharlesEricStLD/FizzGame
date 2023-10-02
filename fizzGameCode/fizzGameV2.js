@@ -45,7 +45,7 @@ const launchGame = () => {
                 } 
 
             let inputEnter = document.querySelector("#inputEnter");
-            let input = inputEnter.value;
+            let input = parseInt(inputEnter.value);
             console.log(input);
             let error = inputVerification(input, index);
 
@@ -73,7 +73,6 @@ function inputVerification(input,index) {
     // let beforeNumber = startingNumber + index; 
     if (nextNumber % 3 === 0 && nextNumber % 5 === 0) {
         if (input !== "FizzBuzz") {
-            
             return error = 1;
         }
     }    
