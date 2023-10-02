@@ -33,15 +33,23 @@ const launchGame = () => {
     //loop for each turn of the game//
     for (let index = 0; index < numberOfTurnToPlay; index++) {
         //Prompt user to enter a number//
-        
-            
+        showInputMessage();
+        inputVerification(input);
     }
 }
 
-function inputVerification(input) {
+function inputVerification(input,index) {
     //Check if the player write a valid input (Fizz, Buzz, the following number)
-    let beforeNumber = startingNumber + i; 
-    if ((Number.isInteger(input)) &&  ( ( (input - beforeNumber === 1) ||  (input - beforeNumber === -1) ) ) )   {
+    let startingNumber = 1;
+    let nextNumber = startingNumber + index;
+    // let beforeNumber = startingNumber + index; 
+    if (nextNumber % 3 === 0 && nextNumber % 5 === 0) {
+        if (input !== "FizzBuzz") {
+        }
+        
+    }    
+    
+    if (input - beforeNumber === 1)   {
         if ( (input % 3 === 0) || (input % 5 === 0)) {
                 alert("GAMEOVER!");
                 error = 1;   
@@ -71,14 +79,45 @@ function inputVerification(input) {
     }
 }
 
-// showInputWindow = {
+const showInputMessage = () =>  {
+    const body = document.querySelector("body");
+    const divCreated = AddNodeToDOM("div",body);
+    const label = AddNodeToDOM("label",divCreated);
+    label.textContent = "We begin at 1, what is the next number";
+    let playerInput = AddNodeToDOM("input",divCreated);
+    const nextButton = AddNodeToDOM("button",divCreated);
+    nextButton.textContent = "Next";
+    return playerInput;    
+}
 
-// }
+const showGameOver = () => {
+    body.innerText = "";
+    gameOverTitle.textContent = "GAME OVER"
+    gameOverTitle.style.display = block;
+    styleNode(gameOverTitle,gameOverTitleStyle);        
+}
 
 
 
 
 //------------------------END OF FUNCTION DEFINITION----------------/////
+//-----Variable definition---/////
+const body = document.querySelector("body");
+const gameOverTitle = document.querySelector("#gameOverTitle");
+
+const gameOverTitleStyle = {
+    color:"red",
+    fontSize: "11em",
+    textAlign:"center",
+    margin: "2%"
+}
+
+
+
 //Event listener for the Start button//
+
+
+
+
 startButton.addEventListener("click",(launchGame));
     
