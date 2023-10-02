@@ -31,12 +31,22 @@ const launchGame = () => {
     let numberOfTurnToPlay = parseInt(numberOfTurn.value); 
 
     //loop for each turn of the game//
-    for (let index = 0; index < numberOfTurnToPlay; index++) {
+    
         //Prompt user to enter a number//
-        let inputEnter = showInputMessage();
-        let input = inputEnter.value;
-        inputVerification(input);
-    }
+        showInputMessage();
+        const nextButton = document.querySelector("#nextButton");
+        //listen to the number enter by the player//
+        nextButton.addEventListener("click",() => {
+            for (let index = 0; index < numberOfTurnToPlay; index++) {
+            let input = inputEnter.value;
+            // inputVerification(input);
+            const inputMessage = document.querySelector("#inputMessage");
+            inputMessage.remove;
+        }
+        });
+        
+        
+    
 }
 
 function inputVerification(input,index) {
@@ -83,12 +93,13 @@ function inputVerification(input,index) {
 const showInputMessage = () =>  {
     const body = document.querySelector("body");
     const divCreated = AddNodeToDOM("div",body);
+    divCreated.setAttribute("id","inputMessage");
     const label = AddNodeToDOM("label",divCreated);
     label.textContent = "We begin at 1, what is the next number";
-    let playerInput = AddNodeToDOM("input",divCreated);
+    AddNodeToDOM("input",divCreated);
     const nextButton = AddNodeToDOM("button",divCreated);
-    nextButton.textContent = "Next";
-    return playerInput;    
+    nextButton.setAttribute("id","nextButton");
+    nextButton.textContent = "Next";   
 }
 
 const showGameOver = () => {
