@@ -29,21 +29,35 @@ const launchGame = () => {
 
     //Get the number of turn indicated by the user in the input//
     let numberOfTurnToPlay = parseInt(numberOfTurn.value); 
-
-    //loop for each turn of the game//
     
         //Prompt user to enter a number//
-        showInputMessage();
+        showInputMessage(firstInputMessage);
         const nextButton = document.querySelector("#nextButton");
+        
         //listen to the number enter by the player//
         nextButton.addEventListener("click",() => {
+                //loop for each turn of the game//
             for (let index = 0; index < numberOfTurnToPlay; index++) {
+                
+                //Condition to send the next message//
+                if (index > 1) {
+                    showInputMessage(nextInputMessage);
+                } 
+
             let inputEnter = document.querySelector("#inputEnter");
             let input = inputEnter.value;
             console.log(input);
-            // inputVerification(input);
-            const inputMessage = document.querySelector("#inputMessage");
-            inputMessage.remove;
+            let error = inputVerification(input, index);
+
+            // LAST STEP : Remove from screen the Input Message//
+            if (error !== 1) {
+                const inputMessage = document.querySelector("#inputMessage");
+                inputMessage.remove();
+            }
+            else {
+                showGameOver();
+                return;
+            }
         }
         });
         
@@ -53,51 +67,40 @@ const launchGame = () => {
 
 function inputVerification(input,index) {
     //Check if the player write a valid input (Fizz, Buzz, the following number)
-    let startingNumber = 1;
-    let nextNumber = startingNumber + index;
+    let error = 0;
+    let nextNumber = 0;
+    nextNumber = index + 1;
     // let beforeNumber = startingNumber + index; 
     if (nextNumber % 3 === 0 && nextNumber % 5 === 0) {
         if (input !== "FizzBuzz") {
+            
+            return error = 1;
         }
-        
     }    
     
-    if (input - beforeNumber === 1)   {
-        if ( (input % 3 === 0) || (input % 5 === 0)) {
-                alert("GAMEOVER!");
-                error = 1;   
+    else if (nextNumber % 3 === 0)   {
+        if (input !== "Fizz") {
+            return error = 1;
         }
-
-        else if ((input % 3 != 0) || (input % 5 != 0)) {
-        //Do nothing, on continue//
-        }
-        else if (((input === "Fizz" || "fizz") && ((beforeNumber + 1) % 3 === 0)) 
-        || ((input === "Buzz" || "buzz") && ((beforeNumber + 1) % 5 === 0)) ) {
-        //continue and do nothing//
-        }
-        else {
-                alert("GAMEOVER!");
-                error = 1;
-            }
     }
 
-    else if  (((input === "Fizz" || "fizz") && ((beforeNumber + 1) % 3 === 0)) || ((input === "Buzz" || "buzz") && ((beforeNumber + 1) % 5 === 0)) ) {
-    //Continue and do nothing//
+    else if (nextNumber % 5 === 0) {
+        if (input !== "Buzz") {
+            return error = 1;
+        }
     }
 
-    
-    else{
-        alert("GAMEOVER!");
-        error = 1;
+    else if (input !== nextNumber) {
+        return error = 1;
     }
 }
-
-const showInputMessage = () =>  {
+        
+const showInputMessage = (textMessage) =>  {
     const body = document.querySelector("body");
     const divCreated = AddNodeToDOM("div",body);
     divCreated.setAttribute("id","inputMessage");
     const label = AddNodeToDOM("label",divCreated);
-    label.textContent = "We begin at 1, what is the next number";
+    label.textContent = textMessage;
     const input = AddNodeToDOM("input",divCreated);
     input.setAttribute("id","inputEnter");
     const nextButton = AddNodeToDOM("button",divCreated);
@@ -106,9 +109,9 @@ const showInputMessage = () =>  {
 }
 
 const showGameOver = () => {
-    body.innerText = "";
+    // body.innerText = "";
     gameOverTitle.textContent = "GAME OVER"
-    gameOverTitle.style.display = block;
+    gameOverTitle.style.display = "block";
     styleNode(gameOverTitle,gameOverTitleStyle);        
 }
 
@@ -119,6 +122,8 @@ const showGameOver = () => {
 //-----Variable definition---/////
 const body = document.querySelector("body");
 const gameOverTitle = document.querySelector("#gameOverTitle");
+const firstInputMessage = "We begin at 1, what is the next number";
+const nextInputMessage = "The next number is ?";
 
 const gameOverTitleStyle = {
     color:"red",
