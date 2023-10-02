@@ -38,7 +38,9 @@ const launchGame = () => {
         //listen to the number enter by the player//
         nextButton.addEventListener("click",() => {
             for (let index = 0; index < numberOfTurnToPlay; index++) {
+            let inputEnter = document.querySelector("#inputEnter");
             let input = inputEnter.value;
+            console.log(input);
             // inputVerification(input);
             const inputMessage = document.querySelector("#inputMessage");
             inputMessage.remove;
@@ -96,7 +98,8 @@ const showInputMessage = () =>  {
     divCreated.setAttribute("id","inputMessage");
     const label = AddNodeToDOM("label",divCreated);
     label.textContent = "We begin at 1, what is the next number";
-    AddNodeToDOM("input",divCreated);
+    const input = AddNodeToDOM("input",divCreated);
+    input.setAttribute("id","inputEnter");
     const nextButton = AddNodeToDOM("button",divCreated);
     nextButton.setAttribute("id","nextButton");
     nextButton.textContent = "Next";   
