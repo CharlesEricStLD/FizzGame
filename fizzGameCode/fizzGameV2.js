@@ -32,7 +32,42 @@ const launchGame = () => {
 
     //loop for each turn of the game//
     for (let index = 0; index < numberOfTurnToPlay; index++) {
+        //Prompt user to enter a number//
         
+            
+    }
+}
+
+function inputVerification(input) {
+    //Check if the player write a valid input (Fizz, Buzz, the following number)
+    let beforeNumber = startingNumber + i; 
+    if ((Number.isInteger(input)) &&  ( ( (input - beforeNumber === 1) ||  (input - beforeNumber === -1) ) ) )   {
+        if ( (input % 3 === 0) || (input % 5 === 0)) {
+                alert("GAMEOVER!");
+                error = 1;   
+        }
+
+        else if ((input % 3 != 0) || (input % 5 != 0)) {
+        //Do nothing, on continue//
+        }
+        else if (((input === "Fizz" || "fizz") && ((beforeNumber + 1) % 3 === 0)) 
+        || ((input === "Buzz" || "buzz") && ((beforeNumber + 1) % 5 === 0)) ) {
+        //continue and do nothing//
+        }
+        else {
+                alert("GAMEOVER!");
+                error = 1;
+            }
+    }
+
+    else if  (((input === "Fizz" || "fizz") && ((beforeNumber + 1) % 3 === 0)) || ((input === "Buzz" || "buzz") && ((beforeNumber + 1) % 5 === 0)) ) {
+    //Continue and do nothing//
+    }
+
+    
+    else{
+        alert("GAMEOVER!");
+        error = 1;
     }
 }
 
