@@ -31,6 +31,7 @@ const launchGame = () => {
     //Get the number of turn indicated by the user in the input//
     let numberOfTurnToPlay = parseInt(numberOfTurn.value)+1; 
 
+    //Add a Timeout of 3 second for the player to play//
     let gameOverTimer = setTimeout(()=> {
     showGameOver();
     },3000);
@@ -40,24 +41,29 @@ const launchGame = () => {
 
     //listen to the number enter by the player//
     nextButton.addEventListener("click",(submitEvent) => {
-    index++
+        let inputEnter = document.querySelector("#inputEnter");
+        let input = parseInt(inputEnter.value);
+        let error = inputVerification(input, index);
     showInputMessage(nextInputMessage);
-    let inputEnter = document.querySelector("#inputEnter");
-    let input = parseInt(inputEnter.value);
-    console.log(input);
-    let error = inputVerification(input, index);
-    });
-    // LAST STEP : Remove from screen the Input Message//
+    if (isNaN(input)) {
+    submitEvent.preventDefault();
+    }
+
     if (error !== 1) {
-        const inputMessage = document.querySelector("#inputMessage");
         gameOverTimer = setTimeout(()=> {
             showGameOver();
             },3000);
+        index++
     }
     else {
         showGameOver();
         return;
     }
+
+    });
+    
+    // LAST STEP : Remove from screen the Input Message//
+    
 }
 
 
@@ -105,7 +111,8 @@ const showInputMessage = (textMessage) =>  {
 }
 
 const showGameOver = () => {
-    // body.innerText = "";
+    const beforeGameOver = document.querySelector("#beforeGameOver");
+    beforeGameOver.textContent = " ";
     gameOverTitle.textContent = "GAME OVER"
     gameOverTitle.style.display = "block";
     styleNode(gameOverTitle,gameOverTitleStyle);        
