@@ -83,30 +83,30 @@ const launchGame = () => {
 
 function inputVerification(input,index) {
     //Check if the player write a valid input (Fizz, Buzz, the following number)
-    let error = 0;
+    let validationError = 0;
     let nextNumber = 1;
     nextNumber = index + 1;
     // let beforeNumber = startingNumber + index; 
     if (nextNumber % 3 === 0 && nextNumber % 5 === 0) {
         if (input !== "FizzBuzz") {
-            return error = 1;
+            return validationError = 1;
         }
     }    
     
     else if (nextNumber % 3 === 0)   {
         if (input !== "Fizz") {
-            return error = 1;
+            return validationError = 1;
         }
     }
 
     else if (nextNumber % 5 === 0) {
         if (input !== "Buzz") {
-            return error = 1;
+            return validationError = 1;
         }
     }
 
     else if (input !== nextNumber) {
-        return error = 1;
+        return validationError = 1;
     }
 }
 
