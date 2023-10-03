@@ -26,44 +26,40 @@ import {AddNodeToDOM,styleNode} from "./specialisedFunction.js"
 //------------------------FUNCTION DEFINITION----------------------/////
 
 const launchGame = () => {
-
+    let index = 0;
+    showInputMessage(firstInputMessage);
     //Get the number of turn indicated by the user in the input//
     let numberOfTurnToPlay = parseInt(numberOfTurn.value)+1; 
-    
-        //Prompt user to enter a number//
-        showInputMessage(firstInputMessage);
-        const nextButton = document.querySelector("#nextButton");
-        
-        //listen to the number enter by the player//
-        nextButton.addEventListener("click",() => {
-                //loop for each turn of the game//
-            for (let index = 1; index < numberOfTurnToPlay+1; index++) {
-                
-                //Condition to send the next message//
-                if (index > 1) {
-                    showInputMessage(nextInputMessage);
-                } 
 
-            let inputEnter = document.querySelector("#inputEnter");
-            let input = parseInt(inputEnter.value);
-            console.log(input);
-            let error = inputVerification(input, index);
+    let gameOverTimer = setTimeout(()=> {
+    showGameOver();
+    },3000);
 
-            // LAST STEP : Remove from screen the Input Message//
-            if (error !== 1) {
-                const inputMessage = document.querySelector("#inputMessage");
-                inputMessage.remove();
-            }
-            else {
-                showGameOver();
-                return;
-            }
-        }
-        });
-        
-        
-    
+    //Create Next Button Event listener to listen to the click"
+    const nextButton = document.querySelector("#nextButton");
+
+    //listen to the number enter by the player//
+    nextButton.addEventListener("click",(submitEvent) => {
+    index++
+    showInputMessage(nextInputMessage);
+    let inputEnter = document.querySelector("#inputEnter");
+    let input = parseInt(inputEnter.value);
+    console.log(input);
+    let error = inputVerification(input, index);
+    });
+    // LAST STEP : Remove from screen the Input Message//
+    if (error !== 1) {
+        const inputMessage = document.querySelector("#inputMessage");
+        gameOverTimer = setTimeout(()=> {
+            showGameOver();
+            },3000);
+    }
+    else {
+        showGameOver();
+        return;
+    }
 }
+
 
 function inputVerification(input,index) {
     //Check if the player write a valid input (Fizz, Buzz, the following number)
@@ -93,6 +89,7 @@ function inputVerification(input,index) {
         return error = 1;
     }
 }
+
         
 const showInputMessage = (textMessage) =>  {
     const body = document.querySelector("body");
@@ -136,4 +133,3 @@ const gameOverTitleStyle = {
 //Event listener for the Start button//
 
 startButton.addEventListener("click",(launchGame));
-    
