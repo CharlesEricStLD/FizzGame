@@ -52,11 +52,17 @@ const launchGame = () => {
     
     let input;
     let error;
+    let inputsArray = [];
     //listen to the number enter by the player//
     nextButton.addEventListener("click",(submitEvent) => {
         // input = NaN;
         // inputEnter = document.querySelector("#inputEnter");
         input = nodeInput.value;
+
+        //Store input in array to show it to player after///
+        
+        inputsArray.push(input);
+        console.log(inputsArray);
         error = inputVerification(input, index);
         index++
     if (error !== 1) {
@@ -69,6 +75,7 @@ const launchGame = () => {
             }
         if (index === numberOfTurnToPlay)
         showYouWin();
+
     }
     else {
         showGameOver();
@@ -129,7 +136,10 @@ const showGameOver = () => {
     inputMessageContainer.remove();
     gameOverTitle.textContent = "GAME OVER"
     gameOverTitle.style.display = "block";
-    styleNode(gameOverTitle,gameOverTitleStyle);        
+    styleNode(gameOverTitle,gameOverTitleStyle);  
+    const p = document.createElement("p");
+    p.textContent = " Here's your progression [" + inputsArray + "]";
+    body.append(p);
 }
 
 const showYouWin = () => {
@@ -140,7 +150,10 @@ const showYouWin = () => {
     gameOverTitle.textContent = "YOU WIN!"
     gameOverTitle.style.display = "block";
     styleNode(gameOverTitle,youWinStyle);
-            
+    const p = document.createElement("p");
+    inputinputsArray.length
+    p.textContent = " Here's your progression [" + inputsArray + "]";
+    body.append(p);
 }
 
 
