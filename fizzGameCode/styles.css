@@ -1,6 +1,48 @@
 /* //FizzGameStyleSheet// */
 
-/* messageBoxStyling {
+/* Color for this project : blue and RED :  */
+
+
+/* RGB: 244,172, 64 & RGB: 234, 89, 42 | SOURCE IMAGE : 1 & 2
+*/
+* {
+    font-family : "Press Start 2P",sans-serif;
+}
+
+body {
+    padding:3%;
+    /* background-color: rgb(46,98,182); */
+    background-color: 	#049cd8;
+    
+}
+
+h1 {
+    color:rgb(254,55,48);
+    text-align: center;
+    padding:0.5%;
+    font-size: 3em;
+}
+
+.instructions {
+    color:rgb(254,55,48);
+    color:black;
+    text-align: center;
+    padding:0.5%;
+    font-size: 1em;
+    line-height: 2;
+    text-align: center;
+}
+
+}
+
+p {
+    margin:10px;
+    line-height: 2;
+}
+
+
+
+/* .messageBoxStyling {
     position: absolute;
     bottom: 50vh;
     right: 25vw;
