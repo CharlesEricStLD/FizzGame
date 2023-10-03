@@ -24,15 +24,13 @@ h1 {
 }
 
 .instructions {
-    color:rgb(254,55,48);
+    color:#E52521;
     color:black;
     text-align: center;
     padding:0.5%;
     font-size: 1em;
     line-height: 2;
     text-align: center;
-}
-
 }
 
 p {
