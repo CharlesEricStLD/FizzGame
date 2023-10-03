@@ -56,13 +56,9 @@ const launchGame = () => {
     nextButton.addEventListener("click",(submitEvent) => {
         // input = NaN;
         // inputEnter = document.querySelector("#inputEnter");
-        input = parseInt(nodeInput.value);
+        input = nodeInput.value;
         error = inputVerification(input, index);
         index++
-    if (isNaN(input)) {
-    submitEvent.preventDefault();
-    }
-
     if (error !== 1) {
         clearTimeout(gameOverTimer);
         gameOverTimer = setTimeout(()=> {
@@ -105,7 +101,7 @@ function inputVerification(input,index) {
         }
     }
 
-    else if (input !== nextNumber) {
+    else if (parseInt(input) !== nextNumber) {
         return validationError = 1;
     }
 }
