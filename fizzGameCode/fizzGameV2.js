@@ -46,7 +46,7 @@ const launchGame = () => {
     //Add a Timeout of 3 second for the player to play//
     let gameOverTimer = setTimeout(()=> {
     showGameOver();
-    },1000000);
+    },5000);
 
     //Create Next Button Event listener to listen to the click"
     
@@ -63,7 +63,7 @@ const launchGame = () => {
         clearTimeout(gameOverTimer);
         gameOverTimer = setTimeout(()=> {
             showGameOver();
-            },10000000);
+            },5000);
         if (index > 1) {
             label.textContent = `You enter ${input}", now what is the next number?`
             }
