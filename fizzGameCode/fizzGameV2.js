@@ -31,7 +31,7 @@ const launchGame = () => {
     //Creating the first input message//
     const body = document.querySelector("body");
     const formCreated = AddNodeToDOM("form",body);
-    formCreated.setAttribute("id","inputMessage");
+    formCreated.setAttribute("id","inputMessageContainer");
     const label = AddNodeToDOM("label",formCreated);
     label.textContent = "We begin at 1, what is the next number";
     const nodeInput = AddNodeToDOM("input",formCreated);
@@ -125,6 +125,8 @@ const showInputMessage = (textMessage) =>  {
 const showGameOver = () => {
     const beforeGameOver = document.querySelector("#beforeGameOver");
     beforeGameOver.textContent = " ";
+    const inputMessageContainer = document.querySelector("#inputMessageContainer");
+    inputMessageContainer.remove();
     gameOverTitle.textContent = "GAME OVER"
     gameOverTitle.style.display = "block";
     styleNode(gameOverTitle,gameOverTitleStyle);        
@@ -133,9 +135,12 @@ const showGameOver = () => {
 const showYouWin = () => {
     const beforeGameOver = document.querySelector("#beforeGameOver");
     beforeGameOver.textContent = " ";
+    const inputMessageContainer = document.querySelector("#inputMessageContainer");
+    inputMessageContainer.remove();
     gameOverTitle.textContent = "YOU WIN!"
     gameOverTitle.style.display = "block";
-    styleNode(gameOverTitle,youWinStyle);        
+    styleNode(gameOverTitle,youWinStyle);
+            
 }
 
 
