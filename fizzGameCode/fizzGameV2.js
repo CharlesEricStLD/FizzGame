@@ -27,30 +27,38 @@ import {AddNodeToDOM,styleNode} from "./specialisedFunction.js"
 
 const launchGame = () => {
     let index = 1;
-    showInputMessage(firstInputMessage);
+
+    //Creating the first input message//
+    const body = document.querySelector("body");
+    const formCreated = AddNodeToDOM("form",body);
+    formCreated.setAttribute("id","inputMessage");
+    const label = AddNodeToDOM("label",formCreated);
+    label.textContent = "We begin at 1, what is the next number";
+    const nodeInput = AddNodeToDOM("input",formCreated);
+    nodeInput.setAttribute("id","inputEnter");
+    const nextButton = AddNodeToDOM("button",formCreated);
+    nextButton.setAttribute("type","submit");
+    nextButton.textContent = "Next";   
+
     //Get the number of turn indicated by the user in the input//
     let numberOfTurnToPlay = parseInt(numberOfTurn.value)+1; 
 
     //Add a Timeout of 3 second for the player to play//
     let gameOverTimer = setTimeout(()=> {
     showGameOver();
-    },5000);
+    },1000000);
 
     //Create Next Button Event listener to listen to the click"
-    const nextButton = document.querySelector("#nextButton");
-    let inputEnter;
+    
     let input;
     let error;
     //listen to the number enter by the player//
     nextButton.addEventListener("click",(submitEvent) => {
-        input = NaN;
-        inputEnter = document.querySelector("#inputEnter");
-        input = parseInt(inputEnter.value);
+        // input = NaN;
+        // inputEnter = document.querySelector("#inputEnter");
+        input = parseInt(nodeInput.value);
         error = inputVerification(input, index);
-        if (index < 2) {
-            showInputMessage(nextInputMessage);
-        }
-        
+        index++
     if (isNaN(input)) {
     submitEvent.preventDefault();
     }
@@ -60,7 +68,9 @@ const launchGame = () => {
         gameOverTimer = setTimeout(()=> {
             showGameOver();
             },10000000);
-        index++
+        if (index > 1) {
+            label.textContent = `You enter ${input}", now what is the next number?`
+            }
     }
     else {
         showGameOver();
@@ -103,13 +113,13 @@ function inputVerification(input,index) {
         
 const showInputMessage = (textMessage) =>  {
     const body = document.querySelector("body");
-    const divCreated = AddNodeToDOM("div",body);
-    divCreated.setAttribute("id","inputMessage");
-    const label = AddNodeToDOM("label",divCreated);
+    const formCreated = AddNodeToDOM("div",body);
+    formCreated.setAttribute("id","inputMessage");
+    const label = AddNodeToDOM("label",formCreated);
     label.textContent = textMessage;
-    const input = AddNodeToDOM("input",divCreated);
+    const input = AddNodeToDOM("input",formCreated);
     input.setAttribute("id","inputEnter");
-    const nextButton = AddNodeToDOM("button",divCreated);
+    const nextButton = AddNodeToDOM("button",formCreated);
     nextButton.setAttribute("id","nextButton");
     nextButton.textContent = "Next";   
 }
