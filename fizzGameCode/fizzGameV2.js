@@ -67,6 +67,8 @@ const launchGame = () => {
         if (index > 1) {
             label.textContent = `You enter ${input}", now what is the next number?`
             }
+        if (index === numberOfTurnToPlay)
+        showYouWin();
     }
     else {
         showGameOver();
@@ -128,6 +130,14 @@ const showGameOver = () => {
     styleNode(gameOverTitle,gameOverTitleStyle);        
 }
 
+const showYouWin = () => {
+    const beforeGameOver = document.querySelector("#beforeGameOver");
+    beforeGameOver.textContent = " ";
+    gameOverTitle.textContent = "YOU WIN!"
+    gameOverTitle.style.display = "block";
+    styleNode(gameOverTitle,youWinStyle);        
+}
+
 
 
 
@@ -140,6 +150,13 @@ const nextInputMessage = "The next number is ?";
 
 const gameOverTitleStyle = {
     color:"red",
+    fontSize: "11em",
+    textAlign:"center",
+    margin: "2%"
+}
+
+const youWinStyle = {
+    color:"green",
     fontSize: "11em",
     textAlign:"center",
     margin: "2%"
