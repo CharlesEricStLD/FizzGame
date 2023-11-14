@@ -12,15 +12,19 @@
 body {
     padding:3%;
     /* background-color: rgb(46,98,182); */
-    background-color: 	#049cd8;
+    background-color: #D0E5F2;
     
 }
 
 h1 {
-    color:rgb(254,55,48);
+    color:#03A66A;
     text-align: center;
     padding:0.5%;
     font-size: 3em;
+}
+
+.instructions{
+    color:#049DD9
 }
 
 form {
@@ -29,20 +33,27 @@ form {
     display:block;
 }
 
-label{
+h2{
     font-size: 2em;
-    margin-bottom:10%;
+    color:#F28705;
+    margin-bottom: 5%;
 }
 
 input{
     width:50%;
     height:10%;
     text-align: center;
+    margin-bottom: 5%;
+    font-size: 2em;
 }
 
 button{
-    width:50%;
-    height: 20%;
+    display: block;
+    font-size: 2em;
+    padding:5% 10%;
+    margin: auto;
+    background-color: #F23838;
+    border-radius: 15px;
 }
 
 #showInstructions:hover +  #instructionsContainer {
@@ -62,9 +73,13 @@ button{
     text-align: center;
 }
 
-
-
 p {
     margin:10px;
     line-height: 2;
+    text-align: center;
+}
+
+.progression{
+    font-size: 2em;
+    color:#F28705
 }

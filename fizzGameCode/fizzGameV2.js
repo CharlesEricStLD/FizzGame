@@ -37,8 +37,8 @@ const launchGame = () => {
     const body = document.querySelector("body");
     const formCreated = AddNodeToDOM("form",body);
     formCreated.setAttribute("id","inputMessageContainer");
-    const label = AddNodeToDOM("label",formCreated);
-    label.textContent = "We begin at 1, what is the next number";
+    const titleOverInput = AddNodeToDOM("h2",formCreated);
+    titleOverInput.textContent = "We begin at 1, what is the next number";
     const nodeInput = AddNodeToDOM("input",formCreated);
     nodeInput.setAttribute("id","inputEnter");
     nodeInput.focus();
@@ -48,7 +48,7 @@ const launchGame = () => {
 
     //Get the number of turn indicated by the user in the input//
     // let numberOfTurnToPlay = parseInt(numberOfTurn.value)+1; 
-    let numberOfTurnToPlay = 30;
+    let numberOfTurnToPlay = 5;
 
     //Add a Timeout of 8 second for the player to play//
     let gameOverTimer = setTimeout(()=> {
@@ -76,7 +76,7 @@ const launchGame = () => {
         if (index > 1) {
             nodeInput.value ="";
             nodeInput.focus();
-            label.textContent = `You enter ${input}", now what is the next number?`
+            titleOverInput.textContent = `You enter ${input}", now what is the next number?`
             }
         if (index === numberOfTurnToPlay)
         showYouWin();
@@ -120,18 +120,18 @@ function inputVerification(input,index) {
 }
 
         
-const showInputMessage = (textMessage) =>  {
-    const body = document.querySelector("body");
-    const formCreated = AddNodeToDOM("div",body);
-    formCreated.setAttribute("id","inputMessage");
-    const label = AddNodeToDOM("label",formCreated);
-    label.textContent = textMessage;
-    const input = AddNodeToDOM("input",formCreated);
-    input.setAttribute("id","inputEnter");
-    const nextButton = AddNodeToDOM("button",formCreated);
-    nextButton.setAttribute("id","nextButton");
-    nextButton.textContent = "Next";   
-}
+// const showInputMessage = (textMessage) =>  {
+//     const body = document.querySelector("body");
+//     const formCreated = AddNodeToDOM("div",body);
+//     formCreated.setAttribute("id","inputMessage");
+//     const titleOverInput = AddNodeToDOM("label",formCreated);
+//     label.textContent = textMessage;
+//     const input = AddNodeToDOM("input",formCreated);
+//     input.setAttribute("id","inputEnter");
+//     const nextButton = AddNodeToDOM("button",formCreated);
+//     nextButton.setAttribute("id","nextButton");
+//     nextButton.textContent = "Next";   
+// }
 
 const showGameOver = (arrayToshow) => {
     const beforeGameOver = document.querySelector("#beforeGameOver");
@@ -141,9 +141,10 @@ const showGameOver = (arrayToshow) => {
     gameOverTitle.textContent = "GAME OVER"
     gameOverTitle.style.display = "block";
     styleNode(gameOverTitle,gameOverTitleStyle);  
-    const p = document.createElement("p");
-    p.textContent = " Here's your progression [" + arrayToshow + "]";
-    body.append(p);
+    const progessionShow = document.createElement("p");
+    progessionShow.classList.add("progression");
+    progessionShow.textContent = " Here's your progression [" + arrayToshow + "]";
+    body.append(progessionShow);
 }
 
 const showYouWin = () => {
@@ -154,13 +155,11 @@ const showYouWin = () => {
     gameOverTitle.textContent = "YOU WIN!"
     gameOverTitle.style.display = "block";
     styleNode(gameOverTitle,youWinStyle);
-    const p = document.createElement("p");
-    inputinputsArray.length
-    p.textContent = " Here's your progression [" + inputsArray + "]";
-    body.append(p);
+    const progessionShow = document.createElement("p");
+    progessionShow.classList.add("progression");
+    progessionShow.textContent = " Here's your progression [" + inputsArray + "]";
+    body.append(progessionShow);
 }
-
-
 
 
 //------------------------END OF FUNCTION DEFINITION----------------/////
