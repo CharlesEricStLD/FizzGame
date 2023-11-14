@@ -67,10 +67,11 @@ button{
     position: relative;
     border: solid 2px;
     text-align: center;
-    padding:0.5%;
-    font-size: 0.9em;
+    padding:5%;
+    font-size: 1em;
     line-height: 2;
     text-align: center;
+    box-shadow: 60px -16px teal;;
 }
 
 p {
@@ -82,4 +83,9 @@ p {
 .progression{
     font-size: 2em;
     color:#F28705
+}
+
+.playAgain{
+    padding:4% 6%;
+    font-size: 1.7em;
 }

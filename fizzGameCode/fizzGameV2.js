@@ -119,20 +119,6 @@ function inputVerification(input,index) {
     }
 }
 
-        
-// const showInputMessage = (textMessage) =>  {
-//     const body = document.querySelector("body");
-//     const formCreated = AddNodeToDOM("div",body);
-//     formCreated.setAttribute("id","inputMessage");
-//     const titleOverInput = AddNodeToDOM("label",formCreated);
-//     label.textContent = textMessage;
-//     const input = AddNodeToDOM("input",formCreated);
-//     input.setAttribute("id","inputEnter");
-//     const nextButton = AddNodeToDOM("button",formCreated);
-//     nextButton.setAttribute("id","nextButton");
-//     nextButton.textContent = "Next";   
-// }
-
 const showGameOver = (arrayToshow) => {
     const beforeGameOver = document.querySelector("#beforeGameOver");
     beforeGameOver.textContent = " ";
@@ -145,6 +131,11 @@ const showGameOver = (arrayToshow) => {
     progessionShow.classList.add("progression");
     progessionShow.textContent = " Here's your progression [" + arrayToshow + "]";
     body.append(progessionShow);
+    const playAgainButton = document.createElement("button");
+    playAgainButton.classList.add("playAgain");
+    playAgainButton.textContent = "Play Again?";
+    body.append(playAgainButton);
+    playAgainButton.addEventListener("click", ()=>(location.reload()) );
 }
 
 const showYouWin = () => {
@@ -159,6 +150,12 @@ const showYouWin = () => {
     progessionShow.classList.add("progression");
     progessionShow.textContent = " Here's your progression [" + inputsArray + "]";
     body.append(progessionShow);
+    const playAgainButton = document.createElement("button");
+    playAgainButton.classList.add("playAgain");
+    playAgainButton.textContent = "Play Again?";
+    body.append(playAgainButton);
+    playAgainButton.addEventListener("click", ()=>(location.reload()) );
+    
 }
 
 
@@ -169,14 +166,14 @@ const gameOverTitle = document.querySelector("#gameOverTitle");
 
 const gameOverTitleStyle = {
     color:"red",
-    fontSize: "11em",
+    fontSize: "8em",
     textAlign:"center",
     margin: "2%"
 }
 
 const youWinStyle = {
     color:"green",
-    fontSize: "11em",
+    fontSize: "8em",
     textAlign:"center",
     margin: "2%"
 }
@@ -185,3 +182,4 @@ const youWinStyle = {
 //Event listener for the Start button//
 
 startButton.addEventListener("click",(launchGame));
+
