@@ -25,92 +25,139 @@ import {AddNodeToDOM,styleNode} from "./specialisedFunction.js"
 
 //------------------------FUNCTION DEFINITION----------------------/////
 
+document.getElementById("startButton").focus()
+
 const launchGame = () => {
+    let index = 1;
+    const timetoWaitBeforeGameOver = 8000;
+
+    //Creating the first input message//
+    const startingForm =document.getElementById("userInput");
+    startingForm.style.display = "none";
+    const body = document.querySelector("body");
+    const formCreated = AddNodeToDOM("form",body);
+    formCreated.setAttribute("id","inputMessageContainer");
+    const label = AddNodeToDOM("label",formCreated);
+    label.textContent = "We begin at 1, what is the next number";
+    const nodeInput = AddNodeToDOM("input",formCreated);
+    nodeInput.setAttribute("id","inputEnter");
+    nodeInput.focus();
+    const nextButton = AddNodeToDOM("button",formCreated);
+    nextButton.setAttribute("type","submit");
+    nextButton.textContent = "Next";   
 
     //Get the number of turn indicated by the user in the input//
-    let numberOfTurnToPlay = parseInt(numberOfTurn.value)+1; 
-    
-        //Prompt user to enter a number//
-        showInputMessage(firstInputMessage);
-        const nextButton = document.querySelector("#nextButton");
-        //loop for each turn of the game//
-        //listen to the number enter by the player//
-            setInterval(nextEvent => {
-                for (let index = 0; index < numberOfTurnToPlay; index++) {
-                    nextButton.addEventListener("click",() => {   
-                            let input = NaN;
-                            let inputEnter = document.querySelector("#inputEnter");
-                            input = parseInt(inputEnter.value);
-                            if (!isNaN(input)) {
-                                // for (let index = 1; index < numberOfTurnToPlay+1;index++) { 
-                                showInputMessage(nextInputMessage)
-                                let error = inputVerification(input, index);
-                                // LAST STEP : Remove from screen the Input Message//
-                                if (error !== 1) {
-                                const inputMessage = document.querySelector("#inputMessage");
-                                inputMessage.remove();
-                                }
-                                else {
-                                    showGameOver();
-                                    return;
-                                }            
-                            }
-                        
-                    });
-                }
-            },1000)
-            console.log("END OF GAME");
-            return;
-    }  
-    
-const inputVerification = (input,index) => {
+    // let numberOfTurnToPlay = parseInt(numberOfTurn.value)+1; 
+    let numberOfTurnToPlay = 30;
+
+    //Add a Timeout of 8 second for the player to play//
+    let gameOverTimer = setTimeout(()=> {
+    showGameOver();
+    },timetoWaitBeforeGameOver);
+
+    //Create Next Button Event listener to listen to the click"
+    let input;
+    let error;
+    let inputsArray = [1];
+    //listen to the number enter by the player//
+    nextButton.addEventListener("click",(submitEvent) => {
+    input = nodeInput.value;
+
+        //Store input in array to show it to player after///
+        inputsArray.push(input);
+        console.log(inputsArray);
+        error = inputVerification(input.toLowerCase() , index);
+        index++
+    if (error !== 1) {
+        clearTimeout(gameOverTimer);
+        gameOverTimer = setTimeout(()=> {
+            showGameOver();
+            },timetoWaitBeforeGameOver);
+        if (index > 1) {
+            nodeInput.value ="";
+            nodeInput.focus();
+            label.textContent = `You enter ${input}", now what is the next number?`
+            }
+        if (index === numberOfTurnToPlay)
+        showYouWin();
+    }
+    else {
+        showGameOver(inputsArray);
+        return;
+    }
+
+    });    
+}
+
+
+function inputVerification(input,index) {
     //Check if the player write a valid input (Fizz, Buzz, the following number)
-    let error = 0;
+    let validationError = 0;
     let nextNumber = 1;
     nextNumber = index + 1;
     // let beforeNumber = startingNumber + index; 
     if (nextNumber % 3 === 0 && nextNumber % 5 === 0) {
-        if (input !== "FizzBuzz") {
-            error = 1;
+        if (input !== "fizzbuzz") {
+            return validationError = 1;
         }
     }    
     
     else if (nextNumber % 3 === 0)   {
-        if (input !== "Fizz") {
-            error = 1;
+        if (input !== "fizz") {
+            return validationError = 1;
         }
     }
 
     else if (nextNumber % 5 === 0) {
-        if (input !== "Buzz") {
-            error = 1;
+        if (input !== "buzz") {
+            return validationError = 1;
         }
     }
 
-    else if (input !== nextNumber) {
-        error = 1;
+    else if (parseInt(input) !== nextNumber) {
+        return validationError = 1;
     }
-    return error;
 }
+
         
 const showInputMessage = (textMessage) =>  {
     const body = document.querySelector("body");
-    const divCreated = AddNodeToDOM("div",body);
-    divCreated.setAttribute("id","inputMessage");
-    const label = AddNodeToDOM("label",divCreated);
+    const formCreated = AddNodeToDOM("div",body);
+    formCreated.setAttribute("id","inputMessage");
+    const label = AddNodeToDOM("label",formCreated);
     label.textContent = textMessage;
-    const input = AddNodeToDOM("input",divCreated);
+    const input = AddNodeToDOM("input",formCreated);
     input.setAttribute("id","inputEnter");
-    const nextButton = AddNodeToDOM("button",divCreated);
+    const nextButton = AddNodeToDOM("button",formCreated);
     nextButton.setAttribute("id","nextButton");
     nextButton.textContent = "Next";   
 }
 
-const showGameOver = () => {
-    // body.innerText = "";
+const showGameOver = (arrayToshow) => {
+    const beforeGameOver = document.querySelector("#beforeGameOver");
+    beforeGameOver.textContent = " ";
+    const inputMessageContainer = document.querySelector("#inputMessageContainer");
+    inputMessageContainer.remove();
     gameOverTitle.textContent = "GAME OVER"
     gameOverTitle.style.display = "block";
-    styleNode(gameOverTitle,gameOverTitleStyle);        
+    styleNode(gameOverTitle,gameOverTitleStyle);  
+    const p = document.createElement("p");
+    p.textContent = " Here's your progression [" + arrayToshow + "]";
+    body.append(p);
+}
+
+const showYouWin = () => {
+    const beforeGameOver = document.querySelector("#beforeGameOver");
+    beforeGameOver.textContent = " ";
+    const inputMessageContainer = document.querySelector("#inputMessageContainer");
+    inputMessageContainer.remove();
+    gameOverTitle.textContent = "YOU WIN!"
+    gameOverTitle.style.display = "block";
+    styleNode(gameOverTitle,youWinStyle);
+    const p = document.createElement("p");
+    inputinputsArray.length
+    p.textContent = " Here's your progression [" + inputsArray + "]";
+    body.append(p);
 }
 
 
@@ -120,8 +167,6 @@ const showGameOver = () => {
 //-----Variable definition---/////
 const body = document.querySelector("body");
 const gameOverTitle = document.querySelector("#gameOverTitle");
-const firstInputMessage = "We begin at 1, what is the next number";
-const nextInputMessage = "The next number is ?";
 
 const gameOverTitleStyle = {
     color:"red",
@@ -130,7 +175,14 @@ const gameOverTitleStyle = {
     margin: "2%"
 }
 
+const youWinStyle = {
+    color:"green",
+    fontSize: "11em",
+    textAlign:"center",
+    margin: "2%"
+}
+
+
 //Event listener for the Start button//
 
 startButton.addEventListener("click",(launchGame));
-    

@@ -11,28 +11,29 @@
 <body>
     
     <h1 id="gameOverTitle"></h1>
-    <h1>Welcome to the fizz game</h1> 
-    <div class = instructions >
-    <p class = instructions>Here's the rule : </p>
-        <div class="gameOver"></div>
-        <p class = instructions>In this game the computer will ask you for a number to start with and the number of turn you want to do. After that entry, each player will have to enter the next number (if you enter 1, the next one is 2, and if you enter 17 the next one is 18  etc.), BUT, there is some special rules ! </p>
-        <ol class = instructions>
-            <li>If the number you enter is divisible by 3, the answer should be replace by Fizz (so you write Fizz and not 3 at the prompt)</li>
-            <li>If the number you enter is divisible by 5, the answer should be replace by Buzz (so you write Buzz and not 3 at the prompt)</li>
-            <li>If the number you enter is divisible by 3 AND 5, the answer should be replace by FizzBuzz (so you write FizzBuzz and not 3 at the prompt)</li>
-        </ol>
-    </div>
+    <div id="beforeGameOver">
+        <h1>Welcome to the fizz game</h1> 
+        <p id="showInstructions">How to play ? </p>
+        <div class="instructions" id="instructionsContainer" >
+            <div class="gameOver"></div>
+            <p class= "instructions">In this game the computer will ask you for the next number (if you enter 1, the next one is 2, and if you enter 17 the next one is 18  etc.), BUT, there is some specials rules ! </p>
+            <ol class="instructions">
+                <li>If the number you enter is divisible by 3, the answer should be replace by Fizz (so you write Fizz and not 3 at the prompt)</li>
+                <li>If the number you enter is divisible by 5, the answer should be replace by Buzz (so you write Buzz and not 3 at the prompt)</li>
+                <li>If the number you enter is divisible by 3 AND 5, the answer should be replace by FizzBuzz (so you write FizzBuzz and not 3 at the prompt)</li>
+            </ol>
+        </div>
 
-    <div id="userInput">
-        <label for="numberOfTurn">How many turns do you want to play ?</label>
-        <input  id="numberOfTurn" type="number" min="5" max="20">
-        <button id="startButton" type="submit">Start!</button>
+        <form action="#" id="userInput">
+            <label for="numberOfTurn"> Just push the start button down here to start the game!</label>
+            <button id="startButton" type="submit">Start!</button>
+        <form>
     </div>
     
-
+<!-- 
     <h2>Just push the start button down here to start the game!</h2>
 
-    <button id="startButton2" class="button" type="button">START!</button>
+    <button id="startButton2" class="button" type="button">START!</button> -->
 
 
     <h3></h3>

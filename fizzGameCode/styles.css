@@ -23,30 +23,48 @@ h1 {
     font-size: 3em;
 }
 
-.instructions {
-    color:#E52521;
+form {
+    text-align: center;
+    margin-bottom:5%;
+    display:block;
+}
+
+label{
+    font-size: 2em;
+    margin-bottom:10%;
+}
+
+input{
+    width:50%;
+    height:10%;
+    text-align: center;
+}
+
+button{
+    width:50%;
+    height: 20%;
+}
+
+#showInstructions:hover +  #instructionsContainer {
+    display:block;
+    color:rgb(254,55,48);
     color:black;
+}
+
+#instructionsContainer {
+    display:none;
+    position: relative;
+    border: solid 2px;
     text-align: center;
     padding:0.5%;
-    font-size: 1em;
+    font-size: 0.9em;
     line-height: 2;
     text-align: center;
 }
+
+
 
 p {
     margin:10px;
     line-height: 2;
 }
-
-
-
-/* .messageBoxStyling {
-    position: absolute;
-    bottom: 50vh;
-    right: 25vw;
-    border: solid black;
-    padding: 3%;
-    font-size: 2em;
-    display: block;
-    text-align: center;
-} */
